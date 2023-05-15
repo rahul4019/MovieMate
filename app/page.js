@@ -1,30 +1,35 @@
-'use client'
+'use client';
 
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchDataFromApi } from "@/utils/api"
-import { getApiConfiguration } from "./store/homeSlice"
-
-
+import { fetchDataFromApi } from '@/utils/api';
+import { getApiConfiguration } from './store/homeSlice';
+import HeroBanner from '@/components/HeroBanner';
 
 export default function Home() {
   const dispatch = useDispatch();
-  const { url } = useSelector(state => state.home)
-  console.log(url)
+  const { url } = useSelector((state) => state.home);
 
   useEffect(() => {
-    const apiTesting = () => {
-      fetchDataFromApi('/movie/popular')
-        .then(res => {
-          dispatch(getApiConfiguration(res))
-        })
-    }
-    apiTesting();
-  }, [])
+    const fetchApiConfig = () => {
+      fetchDataFromApi('/configuration').then((res) => {
 
+        const url = {
+          backdrop: `${res.images.secure_base_url}original`,
+          poster: `${res.images.secure_base_url}original`,
+          profile: `${res.images.secure_base_url}original`,
+        }
+
+        dispatch(getApiConfiguration(url));
+      });
+    };
+    fetchApiConfig();
+  }, []);
 
   return (
-    <div>{url?.total_pages}</div>
-  )
+    <div className="homePage">
+      <HeroBanner />
+    </div>
+  );
 }
