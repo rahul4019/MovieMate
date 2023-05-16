@@ -33,7 +33,13 @@ const HeroBanner = () => {
     <div className="heroBanner">
       {!loading && (
         <div className="backdrop-img">
-          <Image src={background} fill={true} loading='lazy' alt="background_picture" />
+          <Image
+            src={background}
+            style={{ objectFit: 'cover' }}
+            loading="lazy"
+            fill={true}
+            alt="background_picture"
+          />
         </div>
       )}
       <div className="opacity-layer"></div>
