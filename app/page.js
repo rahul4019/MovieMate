@@ -4,33 +4,53 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchDataFromApi } from '@/utils/api';
-import { getApiConfiguration } from './store/homeSlice';
+import { getApiConfiguration, getGenres } from './store/homeSlice';
 import HeroBanner from '@/components/HeroBanner';
+import Trending from '@/components/Trending'
+
 
 export default function Home() {
   const dispatch = useDispatch();
   const { url } = useSelector((state) => state.home);
 
   useEffect(() => {
-    const fetchApiConfig = () => {
-      fetchDataFromApi('/configuration').then((res) => {
-
-        const url = {
-          backdrop: `${res.images.secure_base_url}original`,
-          poster: `${res.images.secure_base_url}original`,
-          profile: `${res.images.secure_base_url}original`,
-        }
-
-        dispatch(getApiConfiguration(url));
-      });
-    };
     fetchApiConfig();
+    genresCall();
   }, []);
+
+  const fetchApiConfig = () => {
+    fetchDataFromApi('/configuration').then((res) => {
+
+      const url = {
+        backdrop: `${res.images.secure_base_url}original`,
+        poster: `${res.images.secure_base_url}original`,
+        profile: `${res.images.secure_base_url}original`,
+      }
+
+      dispatch(getApiConfiguration(url));
+    });
+  };
+
+  const genresCall = async () => {
+    let promises = []
+    let endPoints = ['tv', 'movie']
+    let allGenres = {}
+
+    endPoints.forEach((url) => {
+      promises.push(fetchDataFromApi(`/genre/${url}/list`))
+    })
+
+    const data = await Promise.all(promises) // returns both the responses at once
+    data.map(({ genres }) => {
+      return genres.map((item) => (allGenres[item.id] = item))
+    })
+    dispatch(getGenres(allGenres))
+  }
 
   return (
     <div className="homePage">
       <HeroBanner />
-      <div style={{height: 1000}}></div>
-     </div>
+      <Trending />
+    </div>
   );
 }

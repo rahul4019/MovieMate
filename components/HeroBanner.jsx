@@ -34,9 +34,9 @@ const HeroBanner = () => {
       {!loading && (
         <div className="backdrop-img">
           <Image
+            priority={true}
             src={background}
             style={{ objectFit: 'cover' }}
-            loading="lazy"
             fill={true}
             alt="background_picture"
           />
