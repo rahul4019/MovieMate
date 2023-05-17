@@ -30,6 +30,7 @@ export default function Home() {
   return (
     <div className="homePage">
       <HeroBanner />
-    </div>
+      <div style={{height: 1000}}></div>
+     </div>
   );
 }
