@@ -17,7 +17,7 @@ import Genres from './Genres';
 
 import '../styles/carousel.scss';
 
-const Carousel = ({ data, loading }) => {
+const Carousel = ({ data, loading, endpoint }) => {
   const carouselContainer = useRef();
   const { url } = useSelector((state) => state.home);
   const router = useRouter();
@@ -65,7 +65,13 @@ const Carousel = ({ data, loading }) => {
                 ? url.poster + item.poster_path
                 : PosterFallback;
               return (
-                <div className="carouselItem" key={item.id}>
+                <div
+                  className="carouselItem"
+                  key={item.id}
+                  onClick={() =>
+                    router.push(`/${item.media_type || endpoint}/${item.id}`)
+                  }
+                >
                   <div className="posterBlock">
                     <Image src={posterUrl} fill alt="poster" />
                     <RatingCircle rating={item.vote_average.toFixed(1)} />

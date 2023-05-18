@@ -7,6 +7,7 @@ import { fetchDataFromApi } from '@/utils/api';
 import { getApiConfiguration, getGenres } from './store/homeSlice';
 import HeroBanner from '@/components/HeroBanner';
 import Trending from '@/components/Trending'
+import Popular from '@/components/Popular';
 
 
 export default function Home() {
@@ -51,6 +52,7 @@ export default function Home() {
     <div className="homePage">
       <HeroBanner />
       <Trending />
+      <Popular />
     </div>
   );
 }
