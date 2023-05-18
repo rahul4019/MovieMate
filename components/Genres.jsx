@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux';
 import '../styles/genres.scss';
 
 const Genres = ({ data }) => {
-  const {genres} = useSelector((state) => state.home);
-  console.log('Genres:' ,genres)
+  const { genres } = useSelector((state) => state.home);
   return (
     <div className="genres">
       {data?.map((g) => {
