@@ -9,16 +9,16 @@ import useFetch from '@/hooks/useFetch';
 import ContentWrapper from './ContentWrapper';
 
 const HeroBanner = () => {
-  const router = useRouter();
-  const { url } = useSelector((state) => state.home);
-
   const [background, setBackground] = useState('');
   const [query, setQuery] = useState('');
   const { data, loading } = useFetch(`/movie/upcoming`);
 
+  const router = useRouter();
+  const { url } = useSelector((state) => state.home);
+
   useEffect(() => {
     const bg =
-      url.backdrop +
+      url?.backdrop +
       data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
     setBackground(bg);
   }, [data]);
