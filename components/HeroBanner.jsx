@@ -21,7 +21,7 @@ const HeroBanner = () => {
       url?.backdrop +
       data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
     setBackground(bg);
-  }, [data]);
+  }, [data, url]);
 
   const searchQueryHandler = (e) => {
     if (e.key === 'Enter' && query.length > 0) {
@@ -33,13 +33,15 @@ const HeroBanner = () => {
     <div className="heroBanner">
       {!loading && (
         <div className="backdrop-img">
-          <Image
-            priority={true}
-            src={background}
-            style={{ objectFit: 'cover' }}
-            fill={true}
-            alt="background_picture"
-          />
+          {background && (
+            <Image
+              priority={true}
+              src={background}
+              style={{ objectFit: 'cover' }}
+              fill={true}
+              alt="background_picture"
+            />
+          )}
         </div>
       )}
       <div className="opacity-layer"></div>

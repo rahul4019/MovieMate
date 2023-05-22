@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
@@ -11,16 +12,18 @@ import Genres from './Genres';
 import RatingCircle from './RatingCircle';
 import PosterFallBack from '../public/assets/no-poster.png';
 import PlayBtn from './PlayBtn';
+import VideoPopup from './VideoPopup';
 
 import '../styles/detailsBanner.scss';
 
 const DetailsBanner = ({ video, crew }) => {
-  const params = useParams();
-  const { mediatype, id } = params;
+  const [show, setShow] = useState(false);
+  const [videoId, setVideoId] = useState(null);
+
+  const { mediatype, id } = useParams();
   const { data, loading } = useFetch(`/${mediatype}/${id}`);
 
   const { url } = useSelector((state) => state.home);
-  console.log('URL: ', url);
 
   const _genres = data?.genres?.map((g) => g.id);
 
@@ -37,14 +40,15 @@ const DetailsBanner = ({ video, crew }) => {
 
   return (
     <div className="detailsBanner">
-      {!loading ? (
+      {!loading && url ? (
         <>
           {!!data && (
             <>
+              {console.log(url)}
               <div className="backdrop-img">
                 {url && (
                   <Image
-                    src={url.backdrop + data.backdrop_path}
+                    src={url?.backdrop + data.backdrop_path}
                     alt="backdrop-img"
                     fill
                   />
@@ -82,7 +86,13 @@ const DetailsBanner = ({ video, crew }) => {
                     <Genres data={_genres} />
                     <div className="row">
                       <RatingCircle rating={data?.vote_average.toFixed(1)} />
-                      <div className="playbtn" onClick={() => {}}>
+                      <div
+                        className="playbtn"
+                        onClick={() => {
+                          setShow(true);
+                          setVideoId(video.key);
+                        }}
+                      >
                         <PlayBtn />
                         <span className="text">Watch Trailer</span>
                       </div>
@@ -158,6 +168,12 @@ const DetailsBanner = ({ video, crew }) => {
                     )}
                   </div>
                 </div>
+                <VideoPopup
+                  show={show}
+                  setShow={setShow}
+                  videoId={videoId}
+                  setVideoId={setVideoId}
+                />
               </ContentWrapper>
             </>
           )}

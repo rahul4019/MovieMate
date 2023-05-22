@@ -14,7 +14,6 @@ import TopRated from '@/components/TopRated';
 export default function Home() {
   const dispatch = useDispatch();
   const { url } = useSelector((state) => state.home);
-  console.log(url)
 
   useEffect(() => {
     fetchApiConfig();
