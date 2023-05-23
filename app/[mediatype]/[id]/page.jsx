@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import useFetch from '@/hooks/useFetch';
 import DetailsBanner from '@/components/DetailsBanner';
 import Cast from '@/components/Cast';
+import VideosSection from '@/components/VideosSection';
 
 const page = () => {
   const { mediatype, id } = useParams();
@@ -17,6 +18,7 @@ const page = () => {
     <div>
       <DetailsBanner video={data?.results[0]} crew={credits?.crew} />
       <Cast data={credits?.cast} loading={creditsLoading} />
+      <VideosSection data ={data} loading={loading}/>
     </div>
   );
 };
