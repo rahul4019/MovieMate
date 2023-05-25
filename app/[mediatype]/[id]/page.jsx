@@ -11,7 +11,7 @@ import Recomendation from '@/components/Recomendation';
 
 const page = () => {
   const { mediatype, id } = useParams();
-   const { data, loading } = useFetch(`/${mediatype}/${id}/videos`);
+  const { data, loading } = useFetch(`/${mediatype}/${id}/videos`);
   const { data: credits, loading: creditsLoading } = useFetch(
     `/${mediatype}/${id}/credits`
   );
@@ -21,8 +21,8 @@ const page = () => {
       <DetailsBanner video={data?.results[0]} crew={credits?.crew} />
       <Cast data={credits?.cast} loading={creditsLoading} />
       <VideosSection data={data} loading={loading} />
-      <Similar mediaType={mediatype} id={id}/>
-      <Recomendation mediaType={mediatype} id={id}/>
+      <Similar mediaType={mediatype} id={id} />
+      <Recomendation mediaType={mediatype} id={id} />
     </div>
   );
 };

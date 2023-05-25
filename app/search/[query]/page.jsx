@@ -54,7 +54,7 @@ const page = () => {
             <>
               <div className="pageTitle">
                 {`Search ${
-                  data.total_results > 1 ? 'results' : 'result'
+                  data?.total_results > 1 ? 'results' : 'result'
                 } of '${query.split('%20').join(' ')}'`}
               </div>
               <InfiniteScroll
