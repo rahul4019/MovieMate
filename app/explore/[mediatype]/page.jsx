@@ -48,7 +48,7 @@ const page = () => {
   };
 
   const fetchNextPageData = () => {
-    fetchDataFromApi(`/discover/${mediaType}?page=${pageNum}`, filters).then(
+    fetchDataFromApi(`/discover/${mediatype}?page=${pageNum}`, filters).then(
       (res) => {
         if (data?.results) {
           setData({
