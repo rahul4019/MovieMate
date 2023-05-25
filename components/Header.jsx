@@ -52,23 +52,25 @@ const Header = () => {
   const searchQueryHandler = (e) => {
     if (e.key === 'Enter' && query.length > 0) {
       router.push(`/search/${query}`);
+      setTimeout(() => {
+        setShowSearch(false);
+      }, 1000);
     }
-    setTimeout(() => {
-      setShowSearch(false);
-    }, 1000);
   };
 
   const navigationHandler = (type) => {
-    type === 'movie'
-      ? router.push('/explore/movie')
-      : router.push('/explore/tv');
+    if (type === 'movie') {
+      router.push('/explore/movie');
+    } else {
+      router.push('/explore/tv');
+    }
     setMobileMenu(false);
   };
 
   return (
     <header className={`header ${mobileMenu ? 'mobileView' : ''} ${show}`}>
       <ContentWrapper>
-        <div className="logo">
+        <div className="logo" onClick={() => router.push('/')}>
           <Image src={logo} alt="logo" />
         </div>
         <ul className="menuItems">
@@ -98,8 +100,8 @@ const Header = () => {
               <input
                 type="text"
                 placeholder="Search for movies and series..."
-                onKeyUp={searchQueryHandler}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyUp={searchQueryHandler}
               />
               <VscChromeClose onClick={() => setShowSearch(false)} />
             </div>
