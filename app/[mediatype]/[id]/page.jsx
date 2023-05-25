@@ -9,7 +9,7 @@ import VideosSection from '@/components/VideosSection';
 import Similar from '@/components/Similar';
 import Recomendation from '@/components/Recomendation';
 
-const page = () => {
+const Page = () => {
   const { mediatype, id } = useParams();
   const { data, loading } = useFetch(`/${mediatype}/${id}/videos`);
   const { data: credits, loading: creditsLoading } = useFetch(
@@ -27,4 +27,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

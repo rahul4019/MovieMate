@@ -12,7 +12,7 @@ import noResults from '../../../public/assets/no-results.png';
 
 import '../../../styles/searchResult.scss';
 
-const page = () => {
+const Page = () => {
   const [data, setData] = useState(null);
   const [pageNum, setPageNum] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -81,4 +81,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
