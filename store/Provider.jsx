@@ -1,6 +1,6 @@
 'use client';
 
-const { store } = require('./store');
+const { store } = require('.');
 const { Provider } = require('react-redux');
 
 export function Providers({ children }) {

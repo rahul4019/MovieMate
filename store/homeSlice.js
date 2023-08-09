@@ -1,12 +1,12 @@
-'use client'
-
 import { createSlice } from '@reduxjs/toolkit'
+
+const initialState = {
+    url: {}, genres: {}
+}
 
 export const homeSlice = createSlice({
     name: 'home',
-    initialState: {
-        url: {}, genres: {}
-    },
+    initialState,
     reducers: {
         getApiConfiguration: (state, action) => {
             state.url = action.payload
@@ -19,5 +19,4 @@ export const homeSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { getApiConfiguration, getGenres } = homeSlice.actions
-
 export default homeSlice.reducer
