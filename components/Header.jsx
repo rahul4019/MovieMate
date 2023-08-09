@@ -10,6 +10,7 @@ import Image from 'next/image';
 import '../styles/header.scss';
 import ContentWrapper from './ContentWrapper';
 import logo from '../public/assets/moviemate-logo.svg';
+import logoText from '../public/assets/moviemate-text.svg';
 
 const Header = () => {
   const [show, setShow] = useState('top');
@@ -70,8 +71,9 @@ const Header = () => {
   return (
     <header className={`header ${mobileMenu ? 'mobileView' : ''} ${show}`}>
       <ContentWrapper>
-        <div className="logo" onClick={() => router.push('/')}>
-          <Image src={logo} alt="logo" />
+        <div className="logoContainer" onClick={() => router.push('/')}>
+          <Image className='logo' src={logo} alt="logo" />
+          <Image src={logoText} alt="logo" />
         </div>
         <ul className="menuItems">
           <li className="menuItem" onClick={() => navigationHandler('movie')}>

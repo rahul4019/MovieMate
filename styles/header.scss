@@ -27,11 +27,14 @@
     align-items: center;
     justify-content: space-between;
   }
-  .logo {
+  .logoContainer {
     cursor: pointer;
     img {
       height: 50px;
     }
+  }
+  .logo{
+    margin-right: 5px;
   }
   .menuItems {
     list-style-type: none;
