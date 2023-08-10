@@ -1,49 +1,46 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useSelector } from 'react-redux';
 import Image from 'next/image';
 
-import '../styles/heroBanner.scss';
-import useFetch from '@/hooks/useFetch';
 import ContentWrapper from './ContentWrapper';
+import { store } from '@/store';
+import { Base_URL, headers } from '@/utils/api';
+import SearchBar from './SearchBar';
 
-const HeroBanner = () => {
-  const [background, setBackground] = useState('');
-  const [query, setQuery] = useState('');
-  const { data, loading } = useFetch(`/movie/upcoming`);
+import '../styles/heroBanner.scss';
 
-  const router = useRouter();
-  const { url } = useSelector((state) => state.home);
+const getBackGroundImage = async () => {
+  const { url } = store.getState().home;
 
-  useEffect(() => {
-    const bg =
-      url?.backdrop +
-      data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
-    setBackground(bg);
-  }, [data, url]);
+  try {
+    const data = await fetch(Base_URL + '/movie/upcoming', {
+      headers,
+    });
+    const upcomingMovies = await data.json();
 
-  const searchQueryHandler = (e) => {
-    if (e.key === 'Enter' && query.length > 0) {
-      router.push(`/search/${query}`);
-    }
-  };
+    const backGroundImage =
+      url.backdrop +
+      upcomingMovies.results?.[Math.floor(Math.random() * 20)].backdrop_path;
+    return backGroundImage;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export default async function HeroBanner() {
+  const backGroundImage = await getBackGroundImage();
 
   return (
     <div className="heroBanner">
-      {!loading && (
-        <div className="backdrop-img">
-          {background && (
-            <Image
-              priority={true}
-              src={background}
-              style={{ objectFit: 'cover' }}
-              fill={true}
-              alt="background_picture"
-            />
-          )}
-        </div>
-      )}
+      <div className="backdrop-img">
+        {backGroundImage && (
+          <Image
+            priority={true}
+            src={backGroundImage}
+            style={{ objectFit: 'cover' }}
+            fill={true}
+            alt="background_picture"
+          />
+        )}
+      </div>
       <div className="opacity-layer"></div>
       <ContentWrapper>
         <div className="wrapper">
@@ -52,20 +49,10 @@ const HeroBanner = () => {
             <span className="subtitle">
               Millions of movies, TV shows and people to discover. Explore now.
             </span>
-            <div className="searchInput">
-              <input
-                type="text"
-                placeholder="Search for movies and series..."
-                onKeyUp={searchQueryHandler}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-              <button>Search</button>
-            </div>
+            <SearchBar />
           </div>
         </div>
       </ContentWrapper>
     </div>
   );
-};
-
-export default HeroBanner;
+}

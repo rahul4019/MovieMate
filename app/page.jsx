@@ -31,7 +31,8 @@ const genresCall = async () => {
     promises.push(fetchDataFromApi(`/genre/${url}/list`));
   });
 
-  const data = await Promise.all(promises); // returns both the responses at once
+  // returns both the responses at once
+  const data = await Promise.all(promises);
   data.map(({ genres }) => {
     return genres.map((item) => (allGenres[item.id] = item));
   });
@@ -45,7 +46,7 @@ export default async function Home() {
   return (
     <div className="homePage">
       <HeroBanner />
-      {/* <Trending /> */}
+      <Trending />
       {/* <Popular /> */}
       {/* <TopRated /> */}
     </div>

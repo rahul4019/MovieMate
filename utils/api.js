@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const Base_URL = "https://api.themoviedb.org/3";
+export const Base_URL = "https://api.themoviedb.org/3";
 const NEXT_PUBLIC_TMDB_TOKEN = process.env.NEXT_PUBLIC_TMDB_TOKEN
 
-const headers = {
+export const headers = {
     Authorization: "bearer " + NEXT_PUBLIC_TMDB_TOKEN
 }
 
