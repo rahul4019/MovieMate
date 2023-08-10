@@ -44,7 +44,6 @@ const DetailsBanner = ({ video, crew }) => {
         <>
           {!!data && (
             <>
-              {console.log(url)}
               <div className="backdrop-img">
                 {url && (
                   <Image

@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import ContentWrapper from './ContentWrapper';
-import SwitchTabs from './SwitchTabs';
 
+import SwitchTabs from './SwitchTabs';
+import ContentWrapper from './ContentWrapper';
 import useFetch from '@/hooks/useFetch';
 import Carousel from './Carousel';
 

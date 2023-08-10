@@ -20,6 +20,7 @@ import '../styles/carousel.scss';
 const Carousel = ({ data, loading, endpoint, title }) => {
   const carouselContainer = useRef();
   const { url } = useSelector((state) => state.home);
+
   const router = useRouter();
 
   const navigation = (direction) => {
@@ -50,9 +51,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
   return (
     <div className="carousel">
       <ContentWrapper>
-        {title && 
-          <div className="carouselTitle">{title}</div>
-        }
+        {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
           onClick={() => navigation('left')}
@@ -76,7 +75,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                   }
                 >
                   <div className="posterBlock">
-                    <Image src={posterUrl} fill sizes='100%' alt="poster" />
+                    <Image src={posterUrl} fill sizes="100%" alt="poster" />
                     <RatingCircle rating={item.vote_average.toFixed(1)} />
                     <Genres data={item.genre_ids.slice(0, 2)} />
                   </div>
