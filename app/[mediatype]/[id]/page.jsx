@@ -50,12 +50,14 @@ const Page = () => {
   return (
     <div>
       {!loading && data.results && (
-        <DetailsBanner video={data?.results[0]} crew={credits?.crew} />
+        <>
+          <DetailsBanner video={data?.results[0]} crew={credits?.crew} />
+          <Cast data={credits?.cast} loading={false} />
+          <VideosSection data={data} loading={loading} />
+          <Similar mediaType={mediatype} id={id} />
+          <Recomendation mediaType={mediatype} id={id} />
+        </>
       )}
-      <Cast data={credits?.cast} loading={false} />
-      <VideosSection data={data} loading={loading} />
-      <Similar mediaType={mediatype} id={id} />
-      <Recomendation mediaType={mediatype} id={id} />
     </div>
   );
 };
