@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
@@ -17,11 +17,16 @@ import Genres from './Genres';
 
 import '../styles/carousel.scss';
 
-const Carousel = ({ data, loading, endpoint, title }) => {
+const Carousel = ({ data, endpoint, title }) => {
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
   const carouselContainer = useRef();
+
   const { url } = useSelector((state) => state.home);
 
-  const router = useRouter();
+  useEffect(() => {
+    if (data) setLoading(false);
+  }, [data]);
 
   const navigation = (direction) => {
     const container = carouselContainer.current;

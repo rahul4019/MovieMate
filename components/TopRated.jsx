@@ -1,18 +1,34 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ContentWrapper from './ContentWrapper';
 import SwitchTabs from './SwitchTabs';
-
-import useFetch from '@/hooks/useFetch';
 import Carousel from './Carousel';
+import { Base_URL, headers } from '@/utils/api';
 
 import '../styles/trending.scss';
 
 const TopRated = () => {
+  const [data, setData] = useState({});
   const [endpoint, setEndpoint] = useState('movie');
 
-  const { data, loading } = useFetch(`/${endpoint}/top_rated`);
+  const getData = async () => {
+    try {
+      const res = await fetch(Base_URL + `/${endpoint}/top_rated`, {
+        headers,
+      });
+      const data = await res.json();
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, [endpoint]);
+
+  // const { data, loading } = useFetch(`/${endpoint}/top_rated`);
 
   const handleTabChange = (tab) => {
     setEndpoint(tab === 'Movies' ? 'movie' : 'tv');
@@ -27,7 +43,7 @@ const TopRated = () => {
           handleTabChange={handleTabChange}
         />
       </ContentWrapper>
-      <Carousel data={data?.results} loading={loading} endpoint={endpoint} />
+      <Carousel data={data?.results} endpoint={endpoint} />
     </div>
   );
 };

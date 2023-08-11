@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+
 import '../styles/switchTabs.scss';
 
 const SwitchTabs = ({ data, handleTabChange }) => {
