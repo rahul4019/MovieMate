@@ -1,3 +1,4 @@
+'use client';
 import Carousel from './Carousel';
 import useFetch from '@/hooks/useFetch';
 

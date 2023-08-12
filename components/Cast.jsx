@@ -1,3 +1,5 @@
+'use client'
+
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
 
@@ -16,7 +18,7 @@ const Cast = ({ data, loading }) => {
         <div className="row2 skeleton"></div>
       </div>
     );
-  };
+  };  
   return (
     <div className="castSection">
       <ContentWrapper>

@@ -1,0 +1,16 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  .text {
+    font-size: xx-large;
+  }
+  .id {
+    font-size: larger;
+  }
+}
