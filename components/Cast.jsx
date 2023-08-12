@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
@@ -7,9 +7,15 @@ import ContentWrapper from './ContentWrapper';
 import avatar from '../public/assets/avatar.png';
 
 import '../styles/cast.scss';
+import { useEffect, useState } from 'react';
 
-const Cast = ({ data, loading }) => {
+const Cast = ({ data }) => {
+  const [loading, setLoading] = useState(true);
   const { url } = useSelector((state) => state.home);
+  useEffect(() => {
+    if (data) setLoading(false);
+  }, [data]);
+
   const skeleton = () => {
     return (
       <div className="skItem">
@@ -18,7 +24,7 @@ const Cast = ({ data, loading }) => {
         <div className="row2 skeleton"></div>
       </div>
     );
-  };  
+  };
   return (
     <div className="castSection">
       <ContentWrapper>

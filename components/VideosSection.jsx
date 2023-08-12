@@ -7,11 +7,16 @@ import PlayBtn from './PlayBtn';
 import VideoPopup from './VideoPopup';
 
 import '../styles/videosSection.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const VideosSection = ({ data, loading }) => {
+const VideosSection = ({ data }) => {
+  const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
+
+  useEffect(() => {
+    if (data) setLoading(false);
+  }, [data]);
 
   const loadingSkeleton = () => {
     return (
