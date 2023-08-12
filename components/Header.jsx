@@ -72,7 +72,7 @@ const Header = () => {
     <header className={`header ${mobileMenu ? 'mobileView' : ''} ${show}`}>
       <ContentWrapper>
         <div className="logoContainer" onClick={() => router.push('/')}>
-          <Image className='logo' src={logo} alt="logo" />
+          <Image className="logo" src={logo} alt="logo" />
           <Image src={logoText} alt="logo" />
         </div>
         <ul className="menuItems">
