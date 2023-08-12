@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+
 import ContentWrapper from './ContentWrapper';
 import SwitchTabs from './SwitchTabs';
 import Carousel from './Carousel';

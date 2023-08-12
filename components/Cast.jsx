@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
 
@@ -7,7 +8,6 @@ import ContentWrapper from './ContentWrapper';
 import avatar from '../public/assets/avatar.png';
 
 import '../styles/cast.scss';
-import { useEffect, useState } from 'react';
 
 const Cast = ({ data }) => {
   const [loading, setLoading] = useState(true);

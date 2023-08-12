@@ -21,7 +21,7 @@ const DetailsBanner = ({ video, crew }) => {
   const [videoId, setVideoId] = useState(null);
 
   const { mediatype, id } = useParams();
-  const { data, loading } = useFetch(`/${mediatype}/${id}`);
+  const { data } = useFetch(`/${mediatype}/${id}`);
 
   const { url } = useSelector((state) => state.home);
 

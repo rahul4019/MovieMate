@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
-} from 'react-icons/bs';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
+import {
+  BsFillArrowLeftCircleFill,
+  BsFillArrowRightCircleFill,
+} from 'react-icons/bs';
 
 import ContentWrapper from './ContentWrapper';
 import PosterFallback from '../public/assets/no-poster.png';

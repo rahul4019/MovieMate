@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import ContentWrapper from './ContentWrapper';
@@ -7,7 +8,6 @@ import PlayBtn from './PlayBtn';
 import VideoPopup from './VideoPopup';
 
 import '../styles/videosSection.scss';
-import { useEffect, useState } from 'react';
 
 const VideosSection = ({ data }) => {
   const [loading, setLoading] = useState(true);
