@@ -35,6 +35,7 @@ const Page = () => {
   const [genre, setGenre] = useState(null);
   const [sortby, setSortby] = useState(null);
   const { mediatype } = useParams();
+  console.log('params: ', mediatype)
 
   const { data: genresData } = useFetch(`/genre/${mediatype}/list`);
 
