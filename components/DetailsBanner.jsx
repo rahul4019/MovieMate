@@ -49,7 +49,10 @@ const DetailsBanner = ({ video, crew }) => {
                   <Image
                     src={url?.backdrop + data.backdrop_path}
                     alt="backdrop-img"
-                    fill
+                    priority={true}
+                    className="background-img"
+                    width={1080}
+                    height={1080}
                   />
                 )}
               </div>
@@ -64,6 +67,7 @@ const DetailsBanner = ({ video, crew }) => {
                         alt="poster img"
                         height={500}
                         width={500}
+                        priority
                       />
                     ) : (
                       <Image
@@ -72,6 +76,7 @@ const DetailsBanner = ({ video, crew }) => {
                         alt="poster img"
                         height={500}
                         width={500}
+                        priority
                       />
                     )}
                   </div>

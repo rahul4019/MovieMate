@@ -42,14 +42,13 @@ const VideosSection = ({ data, loading }) => {
                   <Image
                     src={`https://img.youtube.com/vi/${video.key}/mqdefault.jpg`}
                     alt="Video thumbnail"
+                    className="videoPoster"
                     height={150}
                     width={400}
-                   />
+                  />
                   <PlayBtn />
                 </div>
-                  <div className="videoTitle">
-                    {video.name}
-                  </div>
+                <div className="videoTitle">{video.name}</div>
               </div>
             ))}
           </div>

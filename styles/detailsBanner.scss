@@ -18,16 +18,9 @@
     left: 0;
     opacity: 0.1;
     overflow: hidden;
-    .lazy-load-image-background {
-      width: 100%;
-      height: 100%;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
-    }
+    // .background-img {
+    //   object-fit: cover;
+    // }
   }
   .opacity-layer {
     width: 100%;
@@ -50,7 +43,8 @@
     .left {
       flex-shrink: 0;
       .posterImg {
-        width: 100%;
+        width: auto;
+        height: auto;
         display: block;
         border-radius: 12px;
         @include md {
