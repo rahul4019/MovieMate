@@ -1,16 +1,16 @@
 'use client';
 
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import '../styles/heroBanner.scss'
+import '../styles/heroBanner.scss';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
   const router = useRouter();
 
   const searchQueryHandler = (e) => {
-    if (e.key === 'Enter' && query.length > 0) {
+    if (e.key === 'Enter' || (e.type === 'click' && query.length > 0)) {
       router.push(`/search/${query}`);
     }
   };
@@ -23,7 +23,7 @@ const SearchBar = () => {
         onKeyUp={searchQueryHandler}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button>Search</button>
+      <button onClick={searchQueryHandler}>Search</button>
     </div>
   );
 };
