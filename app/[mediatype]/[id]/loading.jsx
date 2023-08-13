@@ -1,6 +1,6 @@
 import ContentWrapper from '@/components/ContentWrapper';
 
-import '../../../styles/dummy.scss';
+import '../../../styles/loading.scss';
 
 const Loading = () => {
   const skeleton = () => {

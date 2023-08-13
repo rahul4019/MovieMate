@@ -5,8 +5,6 @@ import Similar from '@/components/Similar';
 import Recomendation from '@/components/Recomendation';
 import { Base_URL, headers } from '@/utils/api';
 
-import '../../../styles/dummy.scss';
-
 const getData = async (mediatype, id) => {
   try {
     const res = await fetch(Base_URL + `/${mediatype}/${id}/videos`, {

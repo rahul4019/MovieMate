@@ -48,8 +48,8 @@ const DetailsBanner = ({ video, crew }) => {
               alt="backdrop-img"
               priority={true}
               className="background-img"
-              width={1080}
-              height={1080}
+              style={{ objectFit: 'cover' }}
+              fill={true}
             />
           </div>
           <div className="opacity-layer"></div>
@@ -61,18 +61,18 @@ const DetailsBanner = ({ video, crew }) => {
                     className="posterImg"
                     src={url.backdrop + data.poster_path}
                     alt="poster img"
+                    width={350}
                     height={500}
-                    width={500}
-                    priority
+                    priority={true}
                   />
                 ) : (
                   <Image
                     className="posterImg"
                     src={PosterFallBack}
                     alt="poster img"
+                    width={350}
                     height={500}
-                    width={500}
-                    priority
+                    priority={true}
                   />
                 )}
               </div>
