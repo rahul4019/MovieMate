@@ -38,15 +38,15 @@ export default function HeroBanner() {
   return (
     <div className="heroBanner">
       <div className="backdrop-img">
-        {backGroundImage && (
+        {!backGroundImage ? (
+          <div className='skeleton'> Hello world </div>
+        ) : (
           <Image
             src={backGroundImage}
             style={{ objectFit: 'cover' }}
             fill={true}
             alt="background_picture"
             priority
-            placeholder={blur}
-            blurDataURL={backGroundImage}
           />
         )}
       </div>
