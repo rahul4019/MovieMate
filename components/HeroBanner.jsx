@@ -3,13 +3,13 @@ import Image from 'next/image';
 
 import ContentWrapper from './ContentWrapper';
 import { store } from '@/store';
-import { Base_URL, fetchDataFromApi, headers } from '@/utils/api';
+import { Base_URL, headers } from '@/utils/api';
 import SearchBar from './SearchBar';
 
 import '../styles/heroBanner.scss';
 import { useEffect, useState } from 'react';
 
-function HeroBanner() {
+export default function HeroBanner() {
   const [backGroundImage, setBackGroundImage] = useState('');
 
   useEffect(() => {
@@ -40,11 +40,13 @@ function HeroBanner() {
       <div className="backdrop-img">
         {backGroundImage && (
           <Image
-            priority
             src={backGroundImage}
             style={{ objectFit: 'cover' }}
             fill={true}
             alt="background_picture"
+            priority
+            placeholder={blur}
+            blurDataURL={backGroundImage}
           />
         )}
       </div>
@@ -63,7 +65,3 @@ function HeroBanner() {
     </div>
   );
 }
-
-// export const dynamic = 'force-dynamic';
-
-export default HeroBanner;
