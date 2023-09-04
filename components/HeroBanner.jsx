@@ -56,3 +56,5 @@ export default async function HeroBanner() {
     </div>
   );
 }
+
+export const dynamic = 'force-dynamic';
