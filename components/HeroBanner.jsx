@@ -25,7 +25,7 @@ const getBackGroundImage = async () => {
   }
 };
 
-export default async function HeroBanner() {
+async function HeroBanner() {
   const backGroundImage = await getBackGroundImage();
 
   return (
@@ -58,3 +58,5 @@ export default async function HeroBanner() {
 }
 
 export const dynamic = 'force-dynamic';
+
+export default HeroBanner;
