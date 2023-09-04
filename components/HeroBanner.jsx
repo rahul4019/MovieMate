@@ -1,39 +1,46 @@
+'use client';
 import Image from 'next/image';
 
 import ContentWrapper from './ContentWrapper';
 import { store } from '@/store';
-import { Base_URL, headers } from '@/utils/api';
+import { Base_URL, fetchDataFromApi, headers } from '@/utils/api';
 import SearchBar from './SearchBar';
 
 import '../styles/heroBanner.scss';
+import { useEffect, useState } from 'react';
 
-const getBackGroundImage = async () => {
-  const { url } = store.getState().home;
+function HeroBanner() {
+  const [backGroundImage, setBackGroundImage] = useState('');
 
-  try {
-    const data = await fetch(Base_URL + '/movie/upcoming', {
-      headers,
-    });
-    const upcomingMovies = await data.json();
+  useEffect(() => {
+    const getBackGroundImage = async () => {
+      const { url } = store.getState().home;
 
-    const backGroundImage =
-      url.backdrop +
-      upcomingMovies.results?.[Math.floor(Math.random() * 20)].backdrop_path;
-    return backGroundImage;
-  } catch (error) {
-    console.log(error);
-  }
-};
+      try {
+        const data = await fetch(Base_URL + '/movie/upcoming', {
+          headers,
+        });
+        const upcomingMovies = await data.json();
 
-async function HeroBanner() {
-  const backGroundImage = await getBackGroundImage();
+        const imageUrl =
+          url.backdrop +
+          upcomingMovies.results?.[Math.floor(Math.random() * 20)]
+            .backdrop_path;
+        setBackGroundImage(imageUrl);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getBackGroundImage();
+  }, []);
 
   return (
     <div className="heroBanner">
       <div className="backdrop-img">
         {backGroundImage && (
           <Image
-            priority={true}
+            priority
             src={backGroundImage}
             style={{ objectFit: 'cover' }}
             fill={true}
@@ -57,6 +64,6 @@ async function HeroBanner() {
   );
 }
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 export default HeroBanner;
