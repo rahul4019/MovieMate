@@ -11,6 +11,7 @@ const nextConfig = {
                 hostname: '**img.youtube.com',
             },
         ],
+        unoptimized: true,
     },
 }
 
